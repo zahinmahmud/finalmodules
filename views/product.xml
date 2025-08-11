@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="view_finale_product_kanban" model="ir.ui.view">
+    <field name="name">finale.product.kanban</field>
+    <field name="model">finale.product</field> 
+    <field name="arch" type="xml">
+        <kanban class="o_kanban_example">
+            <field name="name"/>
+            <field name="quantity"/>
+            <field name="buying_price"/>
+            <field name="selling_price"/>
+            <field name="image" widget="image" />
+            <field name="UniqueCode"/>
+            <field name="date"/>
+           <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click o_kanban_record">
+                        <div class="o_kanban_image">
+                            <img t-if="record.image.raw_value" t-att-src="kanban_image('finale.product', 'image', record.id)" class="oe_kanban_avatar" style="max-height:150px; max-width:100%;" />
+                        </div>
+
+                        <div class="o_kanban_details">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <div>🆔 <field name="UniqueCode"/></div>
+                            <div>📦 Quantity: <field name="quantity"/></div>
+                            <div>💰 Buying: <field name="buying_price"/></div>
+                            <div>💵 Selling: <field name="selling_price"/></div>
+                            <div>🕒 <field name="date"/></div>
+                          
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+    <!-- Tree View -->
+    <record id="view_finale_product_tree" model="ir.ui.view">
+      <field name="name">finale.product.tree</field>
+      <field name="model">finale.product</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field  name="date"/>
+          <field name="quantity"/>
+          <field name="buying_price"/>
+          <field name="selling_price"/>
+      
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_finale_product_form" model="ir.ui.view">
+      <field name="name">finale.product.form</field>
+      <field name="model">finale.product</field>
+      <field name="arch" type="xml">
+        <form>
+        
+           <group>
+            <field name="name"/>
+            <field name="quantity" readonly="1"/>
+            <field name="date"/>
+            <field name="buying_price"/>
+            <field name="selling_price"/>
+            <field name="image" widget="image"/>
+            <field name="description"/>
+           </group>
+
+
+
+          <notebook>
+            <page string="Inventory Details">
+              <field name="inventory_ids">
+                <tree editable="bottom">
+                  <field name="warehouse"/>
+                  <field name="location"/>
+                  <field name="quantity"/>
+                </tree>
+              </field>
+            </page>
+  </notebook>
+
+        </form>
+      </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_finale_product" model="ir.actions.act_window">
+      <field name="name">Products</field>
+      <field name="res_model">finale.product</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Menu (optional, if not already in menu.xml) -->
+    <menuitem id="menu_finale_product"
+              name="Products"
+              parent="menu_finale_root"
+              action="action_finale_product"
+              sequence="20"/>
+              
+  </data>
+</odoo>
