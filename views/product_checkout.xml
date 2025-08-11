@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+    <template id="custom_checkout_template" name="Custom Checkout Page">
+    <t t-call="website.layout">
+      <div class="container mt-5">
+        <h2>Checkout</h2>
+        <t t-if="product">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h4 class="card-title"><t t-esc="product.name" /></h4>
+              <p>💵 Price: <t t-esc="product.selling_price" /></p>
+              <p>🆔 Code: <t t-esc="product.UniqueCode" /></p>
+              <p>🛒 Quantity: <t t-esc="quantity" /></p>
+              <p><strong>Total:</strong> <t t-esc="float(product.selling_price) * int(quantity)"/></p>
+            </div>
+          </div>
+          <form method="post" action="#">
+            <button type="submit" class="btn btn-success">Confirm | Pay</button>
+          </form>
+        </t>
+        <t t-else="">
+          <p class="text-danger">No product found.</p>
+        </t>
+      </div>
+    </t>
+  </template>
+</data>
+</odoo>
