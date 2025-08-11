@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <template id="checkout_thank_you" name="Thank You Page" key="finalmodules.checkout_thank_you">
+      <t t-call="website.layout">
+        <div class="container mt-5">
+          <h2>Thank you for your purchase!</h2>
+          <p>You bought: <strong><t t-esc="product.name"/></strong></p>
+          <p>Price: <t t-esc="product.selling_price"/></p>
+        </div>
+      </t>
+    </template>
+
+    <template id="checkout_out_of_stock" name="Out of Stock Page">
+      <t t-call="website.layout">
+        <div class="container mt-5">
+          <h2>Sorry, <t t-esc="product.name"/> is out of stock!</h2>
+          <p>Please check back later.</p>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>
