@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <template id="product_list_template" name="Product List">
+      <t t-call="website.layout">
+        <div class="container mt-4">
+          <h1 class="mb-4">Available Products</h1>
+          <div class="row">
+            <t t-foreach="products" t-as="product">
+              <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                  <!-- Product Image -->
+                  <t t-if="product.image">
+                    <img t-att-src="'data:image/png;base64,%s' % product.image" class="card-img-top" style="max-height:150px; object-fit:cover;" />
+                  </t>
+                  <div class="card-body">
+                    <!-- Product Name -->
+                    <h5 class="card-title"><t t-esc="product.name" /></h5>
+
+                    <!-- Unique Code -->
+                    <div>🆔 <strong><t t-esc="product.UniqueCode" /></strong></div>
+
+                    <!-- Selling Price -->
+                    <div>💵 Selling Price: <t t-esc="product.selling_price" /></div>
+
+                    <a t-attf-href="/shop/buy-now/{product.id}" class="btn btn-primary mt-2">Buy Now</a>
+                    <a t-attf-href="/custom/shop/checkout?product_id={product.id}&amp;add_qty=1" class="btn btn-primary mt-2">
+                      Checkout
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>
