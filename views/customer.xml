@@ -1,1 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_customer_tree" model="ir.ui.view">
+        <field name="name">finale.customer.tree</field>
+        <field name="model">finale.customer</field> 
+        <field name="arch" type="xml">
+        <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="address"/>
+                    <field name="phonenumber"/>
+                    <field name="gender"/>
+                    <field name="date"/>
+                    <field name="image"/>
+
+        </tree>
+        </field>
+        </record>
+        <record id="view_customer_form" model="ir.ui.view">
+        <field name="name">finale.customer.form</field>
+        <field name="model">finale.customer</field> 
+        <field name="arch" type="xml">
+            <form string="Inventory">
+                <group>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="address"/>
+                    <field name="phonenumber"/>
+                    <field name="gender"/>
+                    <field name="date"/>
+                    <field name="image"/>
+
+                </group>
+            </form>
+        </field>
+        </record>
+            <record id="action_finale_customer" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="res_model">finale.customer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first customer record
+                </p>
+            </field>
+        </record>
+            <menuitem id="menu_finale_customer" 
+                    name="Customers"
+                    parent="menu_finale_root"
+                    action="action_finale_customer"
+                    sequence="30" />
+    </data>
+</odoo>
 
