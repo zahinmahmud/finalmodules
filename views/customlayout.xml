@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!-- Override Header & Footer in website.layout -->
+    <template id="custom_full_layout" inherit_id="website.layout" priority="1000">
+
+      <!-- ✅ Custom HEADER -->
+      <xpath expr="//header" position="replace">
+        <div class="my-extra-header-info">Call us: +123456789</div>
+        <header class="o_custom_header bg-primary text-white p-3">
+          <div class="container d-flex justify-content-between align-items-center">
+            <h1>MetaHeed</h1>
+            <nav>
+              <a href="/" class="text-white mx-2">Home</a>
+              <a href="/shop/product" class="text-white mx-2">Shop</a>
+              <a href="/contact" class="text-white mx-2">Contact</a>
+            </nav>
+          </div>
+        </header>
+      </xpath>
+
+      <!-- ✅ Custom FOOTER -->
+      <xpath expr="//div[@id='footer']" position="replace">
+        <div id="footer" class="o_footer bg-dark text-white py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <h4>My Website</h4>
+                <p style="color:red; font-size: 20px;">
+                  Value isn’t measured by price, but by the experience and purpose it brings to your life.
+                </p>
+              </div>
+              <div class="col-md-4">
+                <h4>Follow Us</h4>
+                <a href="#" class="text-info me-2">Facebook</a>
+                <a href="#" class="text-info">Twitter</a>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <p> &amp; 2025 MyWebsite. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </xpath>   
+      <xpath expr="//main" position="replace">
+  <main>
+    <t t-call="finalmodules.homepage"/>
+  </main>
+</xpath>
+
+
+      <!-- ✅ Leave content body unchanged -->
+      <!-- The content from t-call="website.layout" (from other templates) will render in the middle -->
+    </template>
+ 
+
+  </data>
+</odoo>
