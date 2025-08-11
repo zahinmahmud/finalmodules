@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="homepage">
+    <div id="wrap">
+
+      <!-- ✅ Hero Section -->
+      <section class="hero bg-primary text-white py-5 text-center">
+        <div class="container">
+          <h1>Welcome to Our Store!</h1>
+          <p class="lead">Find the best products here.</p>
+          <a href="/shop" class="btn btn-light btn-lg mt-3">Shop Now</a>
+        </div>
+      </section>
+
+      <!-- ✅ Features Section -->
+      <section class="features py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <i class="fa fa-truck fa-3x mb-3"></i>
+              <h4>Fast Delivery</h4>
+              <p>We deliver your products quickly and safely.</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <i class="fa fa-check fa-3x mb-3"></i>
+              <h4>Quality Assurance</h4>
+              <p>Top quality products guaranteed.</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <i class="fa fa-phone fa-3x mb-3"></i>
+              <h4>24/7 Support</h4>
+              <p>We are here to help anytime.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ Products Section -->
+      <section class="products py-5 bg-light">
+        <div class="container">
+          <h2 class="mb-4">Featured Products</h2>
+          <t t-set="products" t-value="request.env['product.template'].search([], limit=6)"/>
+          <div class="d-flex flex-wrap">
+            <t t-foreach="products" t-as="product">
+              <div class="card mb-3 me-3" style="width: 18rem;">
+                <img t-if="product.image_1920" t-att-src="'data:image/png;base64,%s' % product.image_1920" class="card-img-top" alt="Product Image"/>
+                <div class="card-body">
+                  <h5 class="card-title"><t t-esc="product.name"/></h5>
+                  <p class="card-text">Price: <t t-esc="product.list_price"/></p>
+                  <a t-att-href="'/shop/product/%d' % product.id" class="btn btn-primary">View</a>
+                </div>
+              </div>
+            </t>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </template>
+</odoo>Q
